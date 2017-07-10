@@ -1,2 +1,2 @@
-# efficient
-General Library for Efficient Computing
+# Efficient
+General C++ Library for Efficient Computing 
