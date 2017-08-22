@@ -7,8 +7,7 @@
 #include <thread>
 #include <iostream>
 
-#include "dynamic_array.hpp"
-#include "allocator_pool.hpp"
+#include <efficient/util/allocator_pool.hpp>
 
 namespace deepfabric
 {

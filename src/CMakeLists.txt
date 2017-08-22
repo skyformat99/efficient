@@ -41,5 +41,7 @@ endif(BUILD_TESTS)
 
 file(GLOB_RECURSE EFFICIENT_SOURCE_FILES "*.hpp" "*.cpp")
 
+include_directories(${MODEL_DIR})
+
 add_library(efficient ${EFFICIENT_SOURCE_FILES})
 
