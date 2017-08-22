@@ -170,21 +170,6 @@ public:
         }
     };
 
-private:
-    /*
-    	DYNAMIC_ARRAY::DYNAMIC_ARRAY()
-    	------------------------------
-    */
-    /*!
-    	@brief Private constructor cannot be called
-    */
-    dynamic_array()
-    {
-        /*
-        	Nothing
-        */
-    }
-
 public:
     allocator_pool &pool;				///< The pool allocator used for all allocation by this object.
     node *head;							///< Pointer to the head of the linked list of blocks of data.
@@ -202,7 +187,7 @@ public:
     	@param initial_size [in] The size (in elements) of the initial allocation in the linked list.
     	@param growth_factor [in] The next node in the linked list stored an element this many times larger than the previous (as an integer).
     */
-    dynamic_array(allocator_pool &pool, size_t initial_size = 1, double growth_factor = 1.5) :
+    explicit dynamic_array(allocator_pool &pool, size_t initial_size = 1, double growth_factor = 1.5) :
         pool(pool),
         growth_factor(growth_factor)
     {
