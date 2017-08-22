@@ -34,5 +34,12 @@ message(STATUS "CXX_FLAGS:=${CMAKE_CXX_FLAGS}")
 message(STATUS "CMAKE_MODULE_PATH:=${CMAKE_MODULE_PATH}")
 
 option(BUILD_TESTS "If enabled, compile the tests." OFF)
+
 if (BUILD_TESTS)
   find_package(GMock MODULE REQUIRED)
+endif(BUILD_TESTS)
+
+file(GLOB_RECURSE EFFICIENT_SOURCE_FILES "*.hpp" "*.cpp")
+
+add_library(efficient ${EFFICIENT_SOURCE_FILES})
+
