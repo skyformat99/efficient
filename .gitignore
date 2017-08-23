@@ -20,3 +20,6 @@ build
 # Temporary files
 *.bk
 *.bak
+
+# Generated files
+*.pb.*

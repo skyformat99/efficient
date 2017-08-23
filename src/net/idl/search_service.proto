@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package SearchService;
+
+service Search {
+  rpc Init(Params) returns (Empty){}
+  rpc IndexDocument(Empty) returns (Empty){}
+  rpc GetTopKDocuments(TopKDocuments) returns(TopKDocumentsReply){}
+  rpc Terminate(Empty) returns (Empty){}
+}
+
+message Empty
+{
+}
+
+message TopKDocuments
+{
+    int32 k = 1;
+    string word = 2;
+}
+
+message TopKDocumentsReply
+{
+    repeated string documentName = 1;
+}
+
+message Param
+{
+	enum ValueType
+	{
+		Primitive = 0;
+		StringCollection = 1;
+	}
+	
+	oneof valueOneOf
+	{	
+		int32 valueInt = 1;
+		int64 valueLong = 2;
+		float valueFloat = 3;
+		double valueDouble = 4;
+		bool valueBool = 5;
+		string valueString = 6;
+	}
+	repeated string valueStringCollection = 7;
+	ValueType type = 8;
+	string name = 9;
+}
+
+message Params
+{
+    repeated Param genericParams = 1;
+}

@@ -60,7 +60,7 @@ else()
   set(BFD_STATIC_LIBS "")
 endif()
 
-file(GLOB_RECURSE EFFICIENT_SOURCE_FILES "*.hpp" "*.cpp")
+file(GLOB_RECURSE EFFICIENT_SOURCE_FILES "*.hpp" "*.cpp" "*.cc")
 
 add_library(efficient ${EFFICIENT_SOURCE_FILES})
 
