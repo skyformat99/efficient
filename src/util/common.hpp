@@ -3,8 +3,9 @@
 #include <errno.h>
 #include <stdlib.h>
 
-//#define VERIFY(expression, format, ...) do{ if(expression == false) throw deepfabric::Exception(SOURCE, format, ##__VA_ARGS__ ); } while(0)
-#define ASSERT(expression) do{ if((expression) == false) abort(); } while(0)
+#include "log.hpp"
+
+#define ASSERT(expression) do{ if((expression) == false) EXCEPTION(); } while(0)
 
 struct file_deleter {
   void operator()(FILE* f) const { 
