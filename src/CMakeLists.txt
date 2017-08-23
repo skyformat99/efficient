@@ -39,6 +39,8 @@ if (BUILD_TESTS)
   find_package(GMock MODULE REQUIRED)
 endif(BUILD_TESTS)
 
+find_package(Grpc REQUIRED)
+
 file(GLOB_RECURSE EFFICIENT_SOURCE_FILES "*.hpp" "*.cpp")
 
 include_directories(${MODEL_DIR})
