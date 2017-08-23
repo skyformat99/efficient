@@ -39,11 +39,38 @@ if (BUILD_TESTS)
   find_package(GMock MODULE REQUIRED)
 endif(BUILD_TESTS)
 
+find_package(Boost 1.53.0 REQUIRED COMPONENTS thread system)
+find_package(Protobuf REQUIRED)
 find_package(Grpc REQUIRED)
+find_package(Threads REQUIRED)
+find_package(Unwind)
+find_package(BFD)
+
+if (Unwind_FOUND)
+  add_definitions(-DUSE_LIBUNWIND)
+else()
+  set(Unwind_INCLUDE_DIR "")
+  set(Unwind_STATIC_LIBS "")
+endif()
+
+if (BFD_FOUND)
+  #add_definitions(-DUSE_LIBBFD)
+else()
+  set(BFD_INCLUDE_DIR "")
+  set(BFD_STATIC_LIBS "")
+endif()
 
 file(GLOB_RECURSE EFFICIENT_SOURCE_FILES "*.hpp" "*.cpp")
 
-include_directories(${MODEL_DIR})
-
 add_library(efficient ${EFFICIENT_SOURCE_FILES})
 
+target_include_directories(efficient PUBLIC
+        ${MODEL_DIR}
+        ${BFD_INCLUDE_DIR}
+        ${Unwind_INCLUDE_DIR})
+target_link_libraries(efficient PUBLIC
+        z rt nsl
+        ${CMAKE_THREAD_LIBS_INIT}
+        ${BFD_STATIC_LIBS}
+        ${Unwind_STATIC_LIBS}
+        ${Boost_LIBRARIES})
